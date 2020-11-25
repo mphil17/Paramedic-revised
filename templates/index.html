@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="https://kit.fontawesome.com/a012878c4d.js" crossorigin="anonymous"></script>
+    <title>Paramedic Wellbeing</title>
+</head>
+
+<body>
+
+    <!--Navbar using bootstrap-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Paramedic</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="index.html">
+                    <h4>Home</h4> <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="about.html">
+                    <h4>About</h4>
+                </a>
+                <a class="nav-item nav-link" href="userInfo.html" id="userInfo">
+                    <h4>User info</h4>
+                </a>
+                <a class="nav-item nav-link" href="link.html">
+                    <h4>Links</h4>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <section class="section-1">
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <h1>Paramedic Wellbeing</h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-2">
+        <h1>Sign Up/ Login</h1>
+        <form action="{{ url_for('signUp') }}" method = "POST">
+        <div class="row" id="formContainer">
+            <div class="col-12 form-sign-in">
+                <input type="email" placeholder="email" id="email">
+                <input type="password" placeholder="password" id="password">
+                <button onclick="signUp();" id="signUp" class="sign-up">Sign Up</button>
+                <button onclick="signIn();" id="signIn" class="sign-in">Sign In</button>
+                <div class="sign-out-hide" id="loggedIn"></div>
+                <button onclick="signOut();" id="signOut" class="sign-out sign-out-hide">Sign Out</button>
+            </div>
+        </div>
+        </form>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center button-container">
+                <button onclick="happierButtonClick()" type="button" class="button-style button-st face-hide" id="happier-button"><i class="fas fa-smile-beam font-custom"></i></button>
+                <button onclick="happyButtonClick()" type="button" class="button-style button-st face-hide" id="happy-button"><i class="fas fa-smile font-custom"></i></button>
+                <button onclick="mehButtonClick()" type="button" class="button-style button-st face-hide" id="meh-button"><i class="fas fa-meh font-custom"></i></button>
+                <button onclick="sadButtonClick()" type="button" class="button-style button-st face-hide" id="sad-button"><i class="fas fa-frown font-custom"></i></button>
+                <button onclick="sadderButtonClick()" type="button" class="button-style button-st face-hide" id="sadder-button"><i class="fas fa-frown-open font-custom"></i></button>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section-3">
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <div class="message-box face-hide" id="message">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src= "{{ url_for('static', filename='js/script.js') }}" type="text/javascript"></script>
+
+</html>
