@@ -23,7 +23,7 @@ def index():
 @app.route("/signup", methods=["GET", "POST"])
 def signUp():
     if request.method == "POST":
-        existing_user = mongo.db.users.find_one(
+        existing_user = mongo.db.pusers.find_one(
              {"username": request.form.get("username").lower()})
 
         if existing_user:
@@ -32,13 +32,14 @@ def signUp():
 
         signup = {
             "username": request.form.get("username").lower(),
+            "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
-        mongo.db.users.insert_one(signup)
+        mongo.db.pusers.insert_one(signup)
 
         session["user"] = request.form.get("username").lower()
         flash("Successfully Signed Up")
-    return render_template("index.html")
+    return render_template("signup.html")
 
 
 if __name__ == "__main__":

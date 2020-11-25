@@ -43,8 +43,22 @@
     </section>
 
     <section class="section-2">
-        <a href="{{ url_for ('signUp') }}">Sign Up</a>
-        <a href="">Login</a>
+        <h1>Sign Up</h1>
+        <form action="{{ url_for('signUp') }}" method = "POST">
+        <div class="row">
+            <div class="col-12 form-sign-in">
+                <input type="email" placeholder="email" id="email" name="email" class="validate">
+                <label for="email" class="face-hide">email</label>
+                <input type="text" placeholder="username" id="username" name="username" class="validate">
+                <label for="username" class="face-hide">username</label>
+                <input type="password" placeholder="password" id="password" name="password" class="validate">
+                <label for="password" class="face-hide">password</label>
+                <button onclick="signUp();" id="signUp" class="sign-up">Sign Up</button>
+                <div class="sign-out-hide" id="loggedIn"></div>
+                <button onclick="signOut();" id="signOut" class="sign-out sign-out-hide">Sign Out</button>
+            </div>
+        </div>
+        </form>
         <div class="row">
             <div class="col-12 d-flex justify-content-center button-container">
                 <button onclick="happierButtonClick()" type="button" class="button-style button-st face-hide" id="happier-button"><i class="fas fa-smile-beam font-custom"></i></button>

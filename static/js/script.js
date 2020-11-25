@@ -98,12 +98,6 @@ function sadderButtonClick() {
 
 // changes made to webpage when user logs in
 function loggedInObjects() {
-    let signUp = document.getElementById("signUp");
-    signUp.style.display = "none";
-    let signIn = document.getElementById("signIn");
-    signIn.style.display = "none";
-    let signOut = document.getElementById("signOut");
-    signOut.style.display = "inline-block";
     let loggedIn = document.getElementById("loggedIn");
     loggedIn.style.display = "inline-block";
     let happier = document.getElementById("happier-button");
@@ -125,19 +119,12 @@ function loggedInObjects() {
     emailShow.style.display = "none";
     passwordShow.style.display = "none";
     // tells user they are logged in
-    var thisUser = firebase.auth().currentUser;
-    let html = `<p> You are logged in as: <strong> ${thisUser.email}</strong></p>`;
+    let html = `<p> You are logged in as: <strong> to do </strong></p>`;
     loggedIn.innerHTML = html;
 }
 
 // changes made to webpage when user logs out
 function loggedOutObjects() {
-    let signUp = document.getElementById("signUp");
-    signUp.style.display = "inline-block";
-    let signIn = document.getElementById("signIn");
-    signIn.style.display = "inline-block";
-    let signOut = document.getElementById("signOut");
-    signOut.style.display = "none";
     let loggedIn = document.getElementById("loggedIn");
     loggedIn.style.display = "none";
     let happier = document.getElementById("happier-button");
