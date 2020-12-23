@@ -25,12 +25,24 @@
                 <a class="nav-item nav-link" href="#">
                     <h4>About</h4>
                 </a>
-                <a class="nav-item nav-link" href="{{ url_for ('profile', username=username) }}" id="userInfo">
-                    <h4>My Profile</h4>
-                </a>
                 <a class="nav-item nav-link" href="#">
                     <h4>Links</h4>
                 </a>
+                {% if session.user %}
+                <a class="nav-item nav-link" href="{{ url_for ('profile', username=username) }}" id="userInfo">
+                    <h4>My Profile</h4>
+                </a>
+                <a class="nav-item nav-link" href="{{ url_for ('logout') }}">
+                    <h4>Logout</h4>
+                </a>
+                {% else %}
+                <a class="nav-item nav-link" href="{{ url_for ('signUp') }}">
+                    <h4>Sign Up</h4>
+                </a>
+                <a class="nav-item nav-link" href="{{ url_for ('login') }}">
+                    <h4>Login</h4>
+                </a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -63,7 +75,7 @@
                 </form>
             </div>
         </div>
-
+        {% else %}
         <div class="row d-flex justify-content-center align-items-center custom-row">
             <a href="{{ url_for ('signUp') }}" ><button class = "custom-button ">Sign Up</button></a>
             <a href="{{ url_for ('login') }}"><button class = "custom-button ">Login</button></a>

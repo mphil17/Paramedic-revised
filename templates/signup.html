@@ -13,24 +13,36 @@
 <body>
 
     <!--Navbar using bootstrap-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light nav-background">
         <a class="navbar-brand" href="index.html">Paramedic</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="index.html">
+           <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="{{ url_for ('index') }}">
                     <h4>Home</h4> <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="about.html">
+                <a class="nav-item nav-link" href="#">
                     <h4>About</h4>
                 </a>
-                <a class="nav-item nav-link" href="userInfo.html" id="userInfo">
-                    <h4>User info</h4>
-                </a>
-                <a class="nav-item nav-link" href="link.html">
+                <a class="nav-item nav-link" href="#">
                     <h4>Links</h4>
                 </a>
+                {% if session.user %}
+                <a class="nav-item nav-link" href="{{ url_for ('profile', username=username) }}" id="userInfo">
+                    <h4>My Profile</h4>
+                </a>
+                <a class="nav-item nav-link" href="{{ url_for ('logout') }}">
+                    <h4>Logout</h4>
+                </a>
+                {% else %}
+                <a class="nav-item nav-link" href="{{ url_for ('signUp') }}">
+                    <h4>Sign Up</h4>
+                </a>
+                <a class="nav-item nav-link" href="{{ url_for ('login') }}">
+                    <h4>Login</h4>
+                </a>
+                {% endif %}
             </div>
         </div>
     </nav>
