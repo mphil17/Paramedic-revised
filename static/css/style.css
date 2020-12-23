@@ -3,9 +3,20 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.custom-row {
+    padding-top: 10px;
+}
+
 .section-1 {
-    background-color: #ffb5a7;
+    background-image: url("../media/helicoptor.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 300px;
+}
+
+.nav-background {
+    background-color: #fcd5ce;
 }
 
 .message-box {
@@ -14,6 +25,14 @@ body {
     border: 1px solid black;
     border-radius: 5px;
 }
+
+/*------login buttons-------*/
+.custom-button {
+    background-color: #fcd5ce;
+    margin: 0px 10px;
+}
+
+/*----feelings buttons-------*/
 
 .button-style {
     border: none;
@@ -37,7 +56,7 @@ button:focus {
 }
 
 .section-2 {
-    background-color: #fcd5ce;
+    background-color: #a962be;
     height: 300px;
 }
 

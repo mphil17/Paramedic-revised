@@ -43,45 +43,9 @@
     </section>
 
     <section class="section-2">
-        {% if session.user %}
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center button-container">
-                <form action="{{ url_for ('happier') }}" method="POST">
-                <button type="submit" class="button-style button-st" id="happier-button"><i class="fas fa-smile-beam font-custom"></i></button>
-                </form>
-                <form action="{{ url_for ('happy') }}" method="POST">
-                <button onclick="happyButtonClick()" type="submit" class="button-style button-st" id="happy-button" name="happy-button" value="happy-button"><i class="fas fa-smile font-custom"></i></button>
-                </form>
-                <form action="{{ url_for ('meh') }}" method="POST">
-                <button onclick="mehButtonClick()" type="submit" class="button-style button-st" id="meh-button" name="meh-button" value="meh-button"><i class="fas fa-meh font-custom"></i></button>
-                </form>
-                <form action="{{ url_for ('sad') }}" method="POST">
-                <button onclick="sadButtonClick()" type="submit" class="button-style button-st" id="sad-button" name="sad-button" value="sad-button"><i class="fas fa-frown font-custom"></i></button>
-                </form>
-                <form action="{{ url_for ('sadder') }}" method="POST">
-                <button onclick="sadderButtonClick()" type="submit" class="button-style button-st" id="sadder-button" name="sadder-button" value="sadder-button"><i class="fas fa-frown-open font-custom"></i></button>
-                </form>
-            </div>
-        </div>
+        <p>Thank you for your submission</p>
 
-        <div class="row d-flex justify-content-center align-items-center custom-row">
-            <a href="{{ url_for ('signUp') }}" ><button class = "custom-button ">Sign Up</button></a>
-            <a href="{{ url_for ('login') }}"><button class = "custom-button ">Login</button></a>
-        </div>
-        {% endif %}
     </section>
-
-    <section class="section-3">
-        <div class="row">
-            <div class="col d-flex justify-content-center">
-                <div class="message-box face-hide" id="message">
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-</body>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -89,4 +53,5 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src= "{{ url_for('static', filename='js/script.js') }}" type="text/javascript"></script>
 
-</html>
+</body>
+</html>    

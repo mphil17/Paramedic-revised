@@ -16,7 +16,6 @@ function happierButtonClick() {
     document.getElementById("meh-button").classList.remove("button-st");
     document.getElementById("sad-button").classList.remove("button-st");
     document.getElementById("sadder-button").classList.remove("button-st");
-    sendData();
 }
 
 function happyButtonClick() {
