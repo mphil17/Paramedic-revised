@@ -38,7 +38,7 @@ body {
     border: none;
     border-radius: 50%;
     background-color: #fcd5ce;
-    margin: 0px 10px;
+    margin: 10px 10px;
 }
 
 .button-st:active {
@@ -57,7 +57,7 @@ button:focus {
 
 .section-2 {
     background-color: #a962be;
-    height: 300px;
+    height: 100vh;
 }
 
 .section-3 {
