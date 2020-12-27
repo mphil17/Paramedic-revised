@@ -61,8 +61,8 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                return render_template(
-                        'profile.html')
+                return redirect(url_for(
+                        'profile', username=session["user"]))
 
             else:
                 # invalid password
@@ -78,11 +78,11 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # get user's username from database
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
+    username = session["user"]
+    feelingsdb = mongo.db.feelings.find()
+    dates = feelingsdb
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template('profile.html', username=username, dates=dates)
 
     return redirect(url_for('login'))
 
