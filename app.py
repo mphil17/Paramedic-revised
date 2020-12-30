@@ -18,7 +18,10 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    username = session["user"]
+    today = mongo.db.feelings.find(
+        {"user": session["user"], "date": datetime.datetime.today()})
+    return render_template("index.html", today=today, username=username)
 
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -54,7 +57,7 @@ def signUp():
 def login():
     if request.method == "POST":
         # check if username exists
-        existing_user = mongo.db.pusers.find_one(
+        existing_user = mongo.db.pusers.find(
             {"username": request.form.get("username").lower()})
         # check password matches correctly
         if existing_user:
@@ -79,12 +82,11 @@ def login():
 def profile(username):
     # get user's username from database
     username = session["user"]
-    feelingsdb = mongo.db.feelings.find()
-    dates = feelingsdb
+    feelingsdb = mongo.db.feelings.find({"user": session["user"]})
+    today = datetime.datetime.today()
     if session["user"]:
-        return render_template('profile.html', username=username, dates=dates)
-
-    return redirect(url_for('login'))
+        return render_template('profile.html', 
+        username=username, feelingsdb=feelingsdb, today=today)
 
 
 @app.route("/logout")
@@ -98,7 +100,7 @@ def happier():
     happier = {
         "user": session["user"],
         "feelings": "happier",
-        "date": datetime.datetime.now(),
+        "date": datetime.datetime.today(),
         "number": 1
     }
     mongo.db.feelings.insert_one(happier)
@@ -111,11 +113,10 @@ def happy():
         happy = {
             "user": session["user"],
             "feelings": "happy",
-            "date": datetime.datetime.now(),
+            "date": datetime.datetime.today(),
             "number": 2
         }
         mongo.db.feelings.insert_one(happy)
-        flash("Sent")
         return redirect(url_for('message'))
 
 
@@ -124,7 +125,7 @@ def meh():
     meh = {
         "user": session["user"],
         "feelings": "meh",
-        "date": datetime.datetime.now(),
+        "date": datetime.datetime.today(),
         "number": 3
     }
     mongo.db.feelings.insert_one(meh)
@@ -136,7 +137,7 @@ def sad():
     sad = {
         "user": session["user"],
         "feelings": "sad",
-        "date": datetime.datetime.now(),
+        "date": datetime.datetime.today(),
         "number": 4
     }
     mongo.db.feelings.insert_one(sad)
@@ -148,7 +149,7 @@ def sadder():
     sadder = {
         "user": session["user"],
         "feelings": "sadder",
-        "date": datetime.datetime.now(),
+        "date": datetime.datetime.today(),
         "number": 5
     }
     mongo.db.feelings.insert_one(sadder)

@@ -55,23 +55,23 @@
     </section>
 
     <section class="section-2">
-        {% if session.user %}
+        {% if (session.user) and (today==false)  %}
         <div class="row">
             <div class="col-12 d-flex justify-content-center button-container">
                 <form action="{{ url_for ('happier') }}" method="POST">
                 <button type="submit" class="button-style button-st" id="happier-button"><i class="fas fa-smile-beam font-custom"></i></button>
                 </form>
                 <form action="{{ url_for ('happy') }}" method="POST">
-                <button onclick="happyButtonClick()" type="submit" class="button-style button-st" id="happy-button" name="happy-button" value="happy-button"><i class="fas fa-smile font-custom"></i></button>
+                <button type="submit" class="button-style button-st" id="happy-button" name="happy-button" value="happy-button"><i class="fas fa-smile font-custom"></i></button>
                 </form>
                 <form action="{{ url_for ('meh') }}" method="POST">
-                <button onclick="mehButtonClick()" type="submit" class="button-style button-st" id="meh-button" name="meh-button" value="meh-button"><i class="fas fa-meh font-custom"></i></button>
+                <button type="submit" class="button-style button-st" id="meh-button" name="meh-button" value="meh-button"><i class="fas fa-meh font-custom"></i></button>
                 </form>
                 <form action="{{ url_for ('sad') }}" method="POST">
-                <button onclick="sadButtonClick()" type="submit" class="button-style button-st" id="sad-button" name="sad-button" value="sad-button"><i class="fas fa-frown font-custom"></i></button>
+                <button type="submit" class="button-style button-st" id="sad-button" name="sad-button" value="sad-button"><i class="fas fa-frown font-custom"></i></button>
                 </form>
                 <form action="{{ url_for ('sadder') }}" method="POST">
-                <button onclick="sadderButtonClick()" type="submit" class="button-style button-st" id="sadder-button" name="sadder-button" value="sadder-button"><i class="fas fa-frown-open font-custom"></i></button>
+                <button type="submit" class="button-style button-st" id="sadder-button" name="sadder-button" value="sadder-button"><i class="fas fa-frown-open font-custom"></i></button>
                 </form>
             </div>
         </div>

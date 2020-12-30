@@ -7,6 +7,16 @@
     <button type="button"><a href="{{ url_for ('logout') }}">Logout</a></button>
 </div>
 <div>
-    {{ dates.date }}
+    {% for i in feelingsdb %}
+        <p>{{ i.feelings }}</p>
+        <p>Your Weekly score:
+            {% if today-i.date > 7%}
+                {{i.date}}
+            {% endif %}
+        </p>
+        
+
+    {% endfor %}
+    
 </div>
 
