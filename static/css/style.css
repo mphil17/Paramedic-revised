@@ -26,6 +26,9 @@ body {
     border-radius: 5px;
 }
 
+.push-down {
+    padding-top: 40px;
+}
 /*------login buttons-------*/
 .custom-button {
     background-color: #fcd5ce;

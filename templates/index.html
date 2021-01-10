@@ -29,7 +29,7 @@
                     <h4>Links</h4>
                 </a>
                 {% if session.user %}
-                <a class="nav-item nav-link" href="{{ url_for ('profile', username=username) }}" id="userInfo">
+                <a class="nav-item nav-link" href="{{ url_for ('profile', username=session['user']) }}" id="userInfo">
                     <h4>My Profile</h4>
                 </a>
                 <a class="nav-item nav-link" href="{{ url_for ('logout') }}">
@@ -49,13 +49,18 @@
     <section class="section-1">
         <div class="row">
             <div class="col d-flex justify-content-center">
-                <h1>Paramedic Wellbeing</h1>
+                <h1 class="push-down">Paramedic Wellbeing</h1>
             </div>
         </div>
     </section>
 
     <section class="section-2">
-        {% if (session.user) and (today==false)  %}
+        {% if session.user %}
+            {% if today %}
+            <div class="row">
+                <p>You have already selected your feelings today</p>
+            </div>
+            {% else %}
         <div class="row">
             <div class="col-12 d-flex justify-content-center button-container">
                 <form action="{{ url_for ('happier') }}" method="POST">
@@ -75,6 +80,7 @@
                 </form>
             </div>
         </div>
+            {% endif %}
         {% else %}
         <div class="row d-flex justify-content-center align-items-center custom-row">
             <a href="{{ url_for ('signUp') }}" ><button class = "custom-button ">Sign Up</button></a>

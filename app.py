@@ -1,5 +1,6 @@
 import os
 import datetime
+from datetime import timedelta
 from flask import (Flask, render_template, url_for, redirect, request,
 flash, session)
 from flask_pymongo import PyMongo
@@ -16,12 +17,24 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 @app.route("/")
 def index():
-    username = session["user"]
-    today = mongo.db.feelings.find(
-        {"user": session["user"], "date": datetime.datetime.today()})
-    return render_template("index.html", today=today, username=username)
+    dates = mongo.db.feelings.find(
+         {"user": session["user"], "date": str(datetime.date.today())})
+    today = ""
+    for y in dates:
+        today = y.get("date")
+    user_feelings = mongo.db.feelings.find({"user": session["user"]})
+    f = 0
+    # Subtract
+    for x in user_feelings:
+        add_date = x.get("date_for_add")
+        calc = add_date + datetime.timedelta(7)
+        # if calc +  >= datetime.datetime.today():
+        #     f += x.get("number")
+    print(add_date)
+    return render_template("index.html", today=today)
 
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -57,7 +70,7 @@ def signUp():
 def login():
     if request.method == "POST":
         # check if username exists
-        existing_user = mongo.db.pusers.find(
+        existing_user = mongo.db.pusers.find_one(
             {"username": request.form.get("username").lower()})
         # check password matches correctly
         if existing_user:
@@ -75,7 +88,7 @@ def login():
             # username does not exist
             flash("incorrect username and/ or password")
             return redirect(url_for('login'))
-    return render_template("login.html")
+    return render_template('login.html')
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -100,7 +113,8 @@ def happier():
     happier = {
         "user": session["user"],
         "feelings": "happier",
-        "date": datetime.datetime.today(),
+        "date": str(datetime.date.today()),
+        "date_for_add": datetime.datetime.today(),
         "number": 1
     }
     mongo.db.feelings.insert_one(happier)
@@ -113,7 +127,8 @@ def happy():
         happy = {
             "user": session["user"],
             "feelings": "happy",
-            "date": datetime.datetime.today(),
+            "date": str(datetime.date.today()),
+            "date_for_add": datetime.datetime.today(),
             "number": 2
         }
         mongo.db.feelings.insert_one(happy)
@@ -125,7 +140,8 @@ def meh():
     meh = {
         "user": session["user"],
         "feelings": "meh",
-        "date": datetime.datetime.today(),
+        "date": str(datetime.date.today()),
+        "date_for_add": datetime.datetime.today(),
         "number": 3
     }
     mongo.db.feelings.insert_one(meh)
@@ -137,7 +153,8 @@ def sad():
     sad = {
         "user": session["user"],
         "feelings": "sad",
-        "date": datetime.datetime.today(),
+        "date": str(datetime.date.today()),
+        "date_for_add": datetime.datetime.today(),
         "number": 4
     }
     mongo.db.feelings.insert_one(sad)
@@ -149,7 +166,8 @@ def sadder():
     sadder = {
         "user": session["user"],
         "feelings": "sadder",
-        "date": datetime.datetime.today(),
+        "date": str(datetime.date.today()),
+        "date_for_add": datetime.datetime.today(),
         "number": 5
     }
     mongo.db.feelings.insert_one(sadder)
